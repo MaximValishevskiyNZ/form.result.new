@@ -7,6 +7,7 @@ if ($arResult["isFormErrors"] == "Y") : ?><?= $arResult["FORM_ERRORS_TEXT"]; ?>
 <? if ($arResult["isFormNote"] != "Y") { ?>
 
 <?= $arResult["FORM_HEADER"] ?>
+
 <div class="contact-form">
    <div class="contact-form__head">
       <div class="contact-form__head-title">Связаться</div>
@@ -18,12 +19,10 @@ if ($arResult["isFormErrors"] == "Y") : ?><?= $arResult["FORM_ERRORS_TEXT"]; ?>
    <form name="SIMPLE_FORM_1" class="contact-form__form" action="/obratnaya-svyaz/" method="POST"
       enctype="multipart/form-data">
       <div class="contact-form__form-inputs">
-         <?
-				foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) {
+         <? foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) {
 					if ($arQuestion['STRUCTURE'][0]['FIELD_TYPE'] == 'hidden') {
 						echo $arQuestion["HTML_CODE"];
-					} else {
-				?>
+					} else { ?>
          <? if ($arQuestion["STRUCTURE"]["0"]["FIELD_TYPE"] != "textarea") { ?>
          <div class="input contact-form__input"><label class="input__label" for="medicine_name">
                <div class="input__label-text"><?= $arQuestion["CAPTION"] ?>
@@ -37,18 +36,15 @@ if ($arResult["isFormErrors"] == "Y") : ?><?= $arResult["FORM_ERRORS_TEXT"]; ?>
             </label></div>
 
 
-         <?
-						}
-					}
-				}
-				?>
+         <? }}} ?>
+	      
       </div>
-      <?
-			foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) {
+
+      <? foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion) {
 				if ($arQuestion['STRUCTURE'][0]['FIELD_TYPE'] == 'hidden') {
 					echo $arQuestion["HTML_CODE"];
-				} else {
-			?>
+				} else { ?>
+
       <? if ($arQuestion["STRUCTURE"]["0"]["FIELD_TYPE"] == "textarea") { ?>
 
       <div class="contact-form__form-message">
@@ -61,11 +57,7 @@ if ($arResult["isFormErrors"] == "Y") : ?><?= $arResult["FORM_ERRORS_TEXT"]; ?>
             </label></div>
       </div>
 
-      <?
-					}
-				}
-			}
-			?>
+      <? }}} ?>
 
       <div class="contact-form__bottom">
          <div class="contact-form__bottom-policy">Нажимая &laquo;Отправить&raquo;, Вы&nbsp;подтверждаете, что
